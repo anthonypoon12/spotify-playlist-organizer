@@ -21,3 +21,4 @@ There is no stack, architecture, or command set to document at this stage. Stack
 - Never run non-read git operations (commit, push, branch, reset, merge, etc.) without the user's explicit go-ahead in the moment.
 - After implementation, launch a fresh subagent to give an objective review of the branch's changes.
 - Avoid self-explanatory comments in code.
+- After ANY change, check both `README.md` and `CLAUDE.md` for staleness. If the change is non-trivial, document it in each; if it makes an existing statement inaccurate, correct it. Skip only when the change genuinely has no bearing on anything those files say.
