@@ -15,7 +15,8 @@ There is no stack, architecture, or command set to document at this stage. Stack
 ## Working with the user
 
 - Brainstorm before implementation. Only move into Plan mode once aligned on the approach.
-- Always use Plan mode before implementing. Plans describe the approach in prose, not code blocks.
+- Always use Plan mode before implementing. Plans describe the approach in prose, not code blocks, and are sequenced as a series of small, independently reviewable steps.
+- Work in small increments. Implement one step at a time — roughly one commit's worth, one logical change — then stop so the user can review and commit before the next step begins. Prefer several small changes over one large one, even when the large one is faster. If a step turns out larger than planned mid-implementation, stop and re-chunk rather than pushing through.
 - Follow TDD where applicable.
 - Don't hand-format code — defer to the linter. If no linter is configured yet, say so explicitly rather than formatting manually.
 - Never run non-read git operations (commit, push, branch, reset, merge, etc.) without the user's explicit go-ahead in the moment.
