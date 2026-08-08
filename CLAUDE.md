@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-This repository is a fresh scaffold for **spotify-playlist-organizer**. No code, dependency manifest, or build tooling exists yet — only a `README.md` with the project name.
+This repository is a fresh scaffold for **spotify-playlist-organizer**. No code, dependency manifest, or build tooling exists yet — only documentation: `README.md`, this file, and `PLAN.md`.
 
-There is no stack, architecture, or command set to document at this stage. Stack, interface, and feature decisions are deferred to a future brainstorm. When the project's language, framework, and structure are established, update this file with:
+There is no architecture or command set to document at this stage. The stack, feature scope, and version-by-version roadmap are decided and recorded in `PLAN.md`. When the project's structure is real, update this file with:
 
 - Build, lint, and test commands (including how to run a single test)
 - High-level architecture and module boundaries
@@ -14,7 +14,7 @@ There is no stack, architecture, or command set to document at this stage. Stack
 
 ## Working with the user
 
-- Brainstorm before implementation. Only move into Plan mode once aligned on the approach.
+- Brainstorm before implementation. Only move into Plan mode once aligned on the approach. See *Teaching the stack* below for what the brainstorm must cover.
 - Always use Plan mode before implementing. Plans describe the approach in prose, not code blocks, and are sequenced as a series of small, independently reviewable steps.
 - Work in small increments. Implement one step at a time — roughly one commit's worth, one logical change — then stop so the user can review and commit before the next step begins. Prefer several small changes over one large one, even when the large one is faster. If a step turns out larger than planned mid-implementation, stop and re-chunk rather than pushing through.
 - Follow TDD where applicable.
@@ -23,3 +23,20 @@ There is no stack, architecture, or command set to document at this stage. Stack
 - After implementation, launch a fresh subagent to give an objective review of the branch's changes.
 - Avoid self-explanatory comments in code.
 - After ANY change, check both `README.md` and `CLAUDE.md` for staleness. If the change is non-trivial, document it in each; if it makes an existing statement inaccurate, correct it. Skip only when the change genuinely has no bearing on anything those files say.
+
+## Teaching the stack
+
+The user is building this project to gain experience with its stack. Assume fluency in general programming and in JavaScript. The TypeScript type system, React's rendering and state model, the Vite and Vitest tooling, and OAuth — the PKCE flow, token handling, and rate-limit-aware API client design — are the areas the project exists to build experience in, so treat them as material to teach rather than as shared background.
+
+**Assess before planning.** During brainstorming, before entering Plan mode, identify which of the concepts above the upcoming work depends on. Ask the user in a single batch whether they have worked with each one — not one interruption per concept, and not a quiz about things they have already used in this repo. Their answer decides which get taught and which get a passing reference.
+
+**Teach what they haven't done.** For each concept the user has not used before: explain what it is, why this project needs it, and what the alternative was and why it lost. This belongs in the brainstorm and in the plan's prose, before any code exists.
+
+**Walk through the result.** After implementing a step that introduced a new concept, walk through what the code does — line by line wherever a line is doing something non-obvious. The small-increment rule makes this cheap: a step is roughly one commit, so there is never much to cover at once. Go deep the first few times a concept appears, then speed up as the pattern repeats — once the user has seen three components wired the same way, the fourth needs a sentence, not a walkthrough. Tedium defeats the purpose, so err toward moving faster when the user is clearly ahead of the explanation.
+
+**Guards.**
+
+- Teaching goes in conversation and plan prose, never into the source as tutorial comments. The "avoid self-explanatory comments" rule still holds.
+- Explain a concept the first time it appears; afterwards refer back to it rather than re-teaching it.
+- Explain the concept, not the syntax. Language mechanics already covered by JavaScript need no coverage.
+- If the user says they already know something, drop it and move on.
