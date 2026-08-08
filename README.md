@@ -19,5 +19,5 @@ No code yet. Planning is complete.
 
 ## Documents
 
-- `PLAN.md` — the goal, constraints, and version-by-version roadmap
+- `ROADMAP.md` — the goal, constraints, and version-by-version roadmap
 - `CLAUDE.md` — working agreement for Claude Code sessions

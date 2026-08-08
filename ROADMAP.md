@@ -1,4 +1,4 @@
-# PLAN.md
+# ROADMAP.md
 
 Roadmap for **spotify-playlist-organizer**. This document is the reference a fresh session reads before touching code: what the app is for, what constrains it, and what each version delivers. Scope decisions are recorded here so they are not re-litigated.
 
