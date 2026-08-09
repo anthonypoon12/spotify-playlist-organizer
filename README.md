@@ -21,3 +21,4 @@ No code yet. Planning is complete.
 
 - `ROADMAP.md` — the goal, constraints, and version-by-version roadmap
 - `CLAUDE.md` — working agreement for Claude Code sessions
+- `plans/` — immutable per-step implementation plans; see `plans/README.md` for the convention

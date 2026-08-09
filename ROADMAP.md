@@ -43,6 +43,8 @@ Four terms the version descriptions rely on:
 
 **Goal.** Deliver the complete core loop — log in, pick a source, compare it against a group, triage the leftovers, commit the result — without any playback.
 
+**Status:** not started
+
 **Includes:**
 
 - **Authentication.** PKCE login and token refresh, with tokens held client-side.
@@ -63,6 +65,8 @@ Four terms the version descriptions rely on:
 
 **Goal.** Let the user hear the song they are deciding about, without leaving the app.
 
+**Status:** not started
+
 **Includes.** Playback of the focused song on the user's active Spotify device: play, pause, seek, and skip. Device listing, with graceful handling of the case where no device is active — the app should say so and offer to refresh the device list, not fail silently. Playback state is polled on a slow interval, with progress ticked locally between polls rather than polled at high frequency, to keep request volume low.
 
 **Done when.** The focused song can be played, paused, scrubbed, and skipped from the app, and the absence of an active device produces a clear message rather than a broken control.
@@ -70,6 +74,8 @@ Four terms the version descriptions rely on:
 ### v3 — Liked Songs preset
 
 **Goal.** Make the most common pass — "what have I liked and never filed anywhere?" — a single click.
+
+**Status:** not started
 
 **Includes.** A preset that sets Playlist A to Liked Songs and pre-selects every other playlist into the comparison group. Pre-selection is a starting state, not a lock: each playlist can be de-selected individually before the fetch runs. The preset is a faster entry into v1's multi-select, not a separate mode with its own behavior. Followed playlists are pre-selected too, since a song filed into a followed playlist still counts as filed even though the app cannot write to it.
 
@@ -81,6 +87,8 @@ Four terms the version descriptions rely on:
 
 **Goal.** Turn a minute-long cold start into a near-instant one.
 
+**Status:** not started
+
 **Includes.** Move the track mirror out of memory and into IndexedDB, keyed by each playlist's `snapshot_id`. A playlist whose snapshot is unchanged is never refetched. Liked Songs has no snapshot ID, so derive one from its total count plus the `added_at` timestamp of its newest item — that pair catches every change that matters in practice, and can be read in a single request. It is a heuristic, not a proof: `added_at` has second granularity, so a remove-and-add within the same second is invisible to it. That is an acceptable miss for personal use. This cache serves a second purpose beyond cold-start speed: iOS routinely restarts a backgrounded home-screen app from scratch, wiping in-memory state. With the track mirror durable in IndexedDB rather than living only in React state, a triage session survives that restart.
 
 **Done when.** A second session against the same playlist group completes its fetch phase without refetching any unchanged playlist, and a triage session fetched while online continues to work — browsing and staging decisions — after the app is backgrounded, reloaded, and reopened without connectivity.
@@ -88,6 +96,8 @@ Four terms the version descriptions rely on:
 ### v5 — Staleness handling
 
 **Goal.** Handle the case where the user edits playlists in the Spotify client while a triage session is open.
+
+**Status:** not started
 
 **Includes.** Revalidate snapshot IDs immediately before committing, and re-check only the staged operations that touch playlists whose snapshots changed. Depends on v4's snapshot tracking, which is why it comes after it.
 
@@ -99,6 +109,8 @@ Four terms the version descriptions rely on:
 
 **Goal.** Catch songs that are already filed under a different recording of the same track.
 
+**Status:** not started
+
 **Includes.** Normalized artist-and-title comparison, to catch live versions, re-recordings, remasters, and differently-tagged copies that exact ID and ISRC matching misses. Fuzzy matches are surfaced as a separate "probably already filed" bucket for the user to review, not silently excluded from the results — fuzzy matching produces false positives, and a false positive that silently hides a song is worse than one the user can glance at and dismiss.
 
 **Done when.** Fuzzy matches appear in their own reviewable bucket, distinct from both the unfiled results and the exact matches.
@@ -106,6 +118,8 @@ Four terms the version descriptions rely on:
 ### v7 — Mobile drag and drop
 
 **Goal.** Support the originally intended mobile interaction.
+
+**Status:** not started
 
 **Includes.** A touch-friendly layout with drag-and-drop assignment of songs to target playlists. Keyboard triage from v1 remains the desktop path; this is an additional interaction, not a replacement.
 

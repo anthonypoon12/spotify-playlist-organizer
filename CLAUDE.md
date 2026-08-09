@@ -12,6 +12,8 @@ There is no architecture or command set to document at this stage. The stack, fe
 - High-level architecture and module boundaries
 - Any non-obvious conventions specific to this codebase
 
+The prose plan behind each step of implementation work is recorded under `plans/`, following the convention in `plans/README.md`. Check there for the plan a given step was implemented from.
+
 ## Working with the user
 
 - Don't hand-format code — defer to the linter. If no linter is configured yet, say so explicitly rather than formatting manually.
