@@ -128,6 +128,25 @@ Four terms the version descriptions rely on:
 
 **Done when.** A triage session can be completed on a phone by dragging songs into target playlists.
 
+### v8 — Commit history
+
+**Goal.** Keep a durable, readable record of what the app has actually written to Spotify.
+
+**Status:** not started
+
+**Includes.** An append-only log written by the commit runner as part of committing, one entry per song per commit. Each entry holds the timestamp, the track's ID and ISRC, a denormalized copy of title and artist, the source Playlist A, the target playlists the song was added to, whether removal from the source was staged, and a per-operation outcome. Storage is IndexedDB, alongside v4's cache. Retention is unbounded — nothing is pruned, and this is stated so it is not revisited later: an entry is a few hundred bytes, and a heavy year of triage stays well under a megabyte. The reading surface is a plain list, newest first.
+
+Two properties of an entry are worth the reasoning being recorded, because both read as arbitrary detail without it.
+
+- **The outcome is three-valued** — confirmed, ambiguous-then-retried, or failed. This is forced by v1's own commit runner, which tolerates duplicates and resolves an ambiguous write with a single verification request rather than assuming either result. "Believed to have landed" is a genuinely different state from "landed," and the history is exactly where that difference gets consulted, so collapsing the two would hollow out the feature.
+- **Entries are denormalized** — the stored copy of title and artist is not redundancy against the track cache. A log of bare IDs cannot be read without a live API call to resolve them, which defeats the point of storing the log durably in the first place.
+
+The record format is shaped so export and import can be added later without migrating existing entries: every entry carries a schema version, every entry carries a stable unique ID that a future import can deduplicate against, every entry is self-contained rather than pointing into v4's track cache, and every field is plain JSON-serializable. Export itself is not built in v8. This is a constraint on the format, not a feature.
+
+**Done when.** A committed session appears in the history with each song's targets and outcome, a commit whose outcome could not be verified reads as ambiguous rather than as a success, and the history survives an app restart and is readable with no network.
+
+**Note.** Depends on v4's IndexedDB. It is independent of v6 and v7 and can be pulled forward to any point after v4. The number is last only to keep existing version numbers stable — the frozen v1 plans cite v4 and v5 by number, and renumbering would silently falsify them. The position is not a priority judgment.
+
 ## Deferred and open
 
 Raised during planning and consciously postponed. These are decisions, not oversights.
