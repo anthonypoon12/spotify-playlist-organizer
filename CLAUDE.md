@@ -21,6 +21,14 @@ The prose plan behind each step of implementation work is recorded under `plans/
 
 See *Teaching the stack* below for what a brainstorm in this repo must additionally cover.
 
+## Plans must land working software
+
+Every plan under `plans/` ends with the product in a working state. Incomplete is fine — a feature only partly built, a screen fed placeholder data, later steps of the version untouched. Broken is not: no plan may end with a failing build, failing tests, a crashing path, or a feature that is wired up far enough to be reachable but errors when used. Anything reachable at the end of a step behaves correctly, and anything not yet built is absent rather than half-connected.
+
+Each plan states, in its prose, how to confirm this — the command to run and what the user should see. That check is part of the step, not follow-up work.
+
+When a step's natural scope would leave something broken partway, either widen it to include the repair or cut it along a different seam so each piece stands on its own. If small and working genuinely conflict for a given step, raise it during brainstorming and let the user choose — don't plan a broken intermediate state.
+
 ## Teaching the stack
 
 The user is building this project to gain experience with its stack. Assume fluency in general programming and in JavaScript. The TypeScript type system, React's rendering and state model, the Vite and Vitest tooling, and OAuth — the PKCE flow, token handling, and rate-limit-aware API client design — are the areas the project exists to build experience in, so treat them as material to teach rather than as shared background.
