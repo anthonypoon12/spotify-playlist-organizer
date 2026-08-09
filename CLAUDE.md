@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-This repository is a fresh scaffold for **spotify-playlist-organizer**. No code, dependency manifest, or build tooling exists yet — only documentation: `README.md`, this file, and `ROADMAP.md`.
+This repository is a fresh scaffold for **spotify-playlist-organizer**. No code, dependency manifest, or build tooling exists yet — only documentation: `README.md`, this file, `ROADMAP.md`, and the plans under `plans/`.
 
 There is no architecture or command set to document at this stage. The stack, feature scope, and version-by-version roadmap are decided and recorded in `ROADMAP.md`. When the project's structure is real, update this file with:
 
@@ -12,7 +12,7 @@ There is no architecture or command set to document at this stage. The stack, fe
 - High-level architecture and module boundaries
 - Any non-obvious conventions specific to this codebase
 
-The prose plan behind each step of implementation work is recorded under `plans/`, following the convention in `plans/README.md`. Check there for the plan a given step was implemented from.
+The prose plan behind each unit of approved work is recorded under `plans/`, following the convention in `plans/README.md`. One plan covers a block spanning several commits; check there for the plan a given change was implemented from.
 
 ## Working with the user
 
