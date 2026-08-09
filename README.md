@@ -15,7 +15,7 @@ The second reason shapes how the work happens: changes land in small, independen
 
 ## Status
 
-No code yet. Planning is complete.
+No code yet. The roadmap is settled through v7, and planning for **v1** is complete: it is broken down into five executable blocks under `plans/v1/` — each one a self-contained unit of approved work that ends with the app in a working state. `plans/v1/01-plumbing.md` is where implementation starts. Later versions are scoped in `ROADMAP.md` but not yet broken into plans.
 
 ## Documents
 

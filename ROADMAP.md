@@ -28,6 +28,8 @@ A static single-page app built with Vite, React, and TypeScript.
 
 Authentication uses the Authorization Code flow with PKCE, which means there is no backend and no client secret anywhere in the codebase. The app talks to the Spotify Web API directly from the browser. The build output is static files, deployable to any static host. Being static files also makes the app installable to a mobile home screen via a web app manifest — no separate architecture is needed for that.
 
+Five further choices were settled before v1 and apply to every version. **State is React's own built-ins** — `useState`, `useReducer`, and a single session Context — with no external store, because the shared state is small and learning React's re-render model is itself a goal of the project. **Styling is CSS Modules**, not Tailwind, because it needs no Vite configuration and the keyboard-driven UI is mostly stateful selectors that read better as real CSS. **TypeScript runs `strict` plus `noUncheckedIndexedAccess`**, the second flag chosen because matching indexes tracks by ID and ISRC where a miss is the normal case, and the compiler should force that case to be handled. **There is no router**, because the app is one screen plus an OAuth return that is detectable from a `code` query parameter. **There is no data-fetching library**, because the fetch is one sequenced crawl rather than many component-triggered requests, and v4 specifies its own `snapshot_id`-keyed cache anyway.
+
 ## Core concepts
 
 Four terms the version descriptions rely on:
@@ -43,7 +45,7 @@ Four terms the version descriptions rely on:
 
 **Goal.** Deliver the complete core loop — log in, pick a source, compare it against a group, triage the leftovers, commit the result — without any playback.
 
-**Status:** not started
+**Status:** planned — plans/v1/01-plumbing.md, plans/v1/02-getting-the-data.md, plans/v1/03-triage.md, plans/v1/04-commit.md, plans/v1/05-installable.md
 
 **Includes:**
 
